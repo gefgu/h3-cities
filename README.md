@@ -8,7 +8,7 @@ conda env create -f environment.yml
 
 ## Usage
 
-Test the demo using:
+Run the demo using:
 ```bash
 streamlit run demo.py
 ```
