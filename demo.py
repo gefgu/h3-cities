@@ -50,6 +50,7 @@ def plot_city_hexagons(city_name: str, city: gdf.GeoDataFrame):
     return f
 
 
+st.set_page_config(page_title="H3-Cities")
 st.title("H3-Cities First Demo!")
 
 city_name = st.text_input("City Name:", "Paris, France")
