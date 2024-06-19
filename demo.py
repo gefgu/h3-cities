@@ -59,10 +59,9 @@ resolution = st.slider("Resolution:", 5, 12, 8)
 city = get_city_hexagons_geo_df(city_name, resolution)
 fig = plot_city_hexagons(city_name, city)
 
-save_path = f"{city_name}_resolution_{resolution}.geojson"
+save_path = f"{city_name.replace(" ", "_").replace(",", "_")}_resolution_{resolution}.geojson"
 
-
-city.to_file(f"data/{save_path}", driver="GeoJSON")
+city.to_file(save_path, driver="GeoJSON")
 st.pyplot(fig)
-with open(f"data/{save_path}", "rb") as f:
+with open(save_path, "rb") as f:
     st.download_button("Export GeoJSON (.geojson)", f, file_name=save_path)
