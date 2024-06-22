@@ -1,2 +1,4 @@
 cache/
 *.geojson
+**/*.vscode
+**/__pycache__
