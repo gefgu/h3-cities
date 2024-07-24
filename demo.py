@@ -48,7 +48,13 @@ def get_city_hexagons_geo_df(city_name: str, resolution: int):
 def plot_city_hexagons(city_name: str, city: gdf.GeoDataFrame):
     f, ax = plt.subplots(1, 1, dpi=300)
 
-    city.plot(ax=ax, alpha=0.4, edgecolor="black")
+    city.plot(
+        ax=ax,
+        alpha=0.6,
+        color="lightgray",
+        edgecolor="black",
+        linewidth=max(10 / len(city), 0.05),
+    )
     cx.add_basemap(ax, crs=city.crs, source=cx.providers.CartoDB.Positron)
     plt.title(city_name)
     ax.set_axis_off()
