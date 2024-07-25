@@ -32,6 +32,9 @@ def get_city_hexagons(city_name: str, resolution: int):
 
 
 def get_city_hexagons_geo_df(city_name: str, resolution: int):
-    hexagons = get_city_hexagons(city_name, resolution)
-    geo_df = gdf.GeoDataFrame(hexagons, crs="EPSG:4326")
+    try:
+        hexagons = get_city_hexagons(city_name, resolution)
+        geo_df = gdf.GeoDataFrame(hexagons, crs="EPSG:4326")
+    except:
+        geo_df = gdf.GeoDataFrame()
     return geo_df
