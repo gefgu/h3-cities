@@ -1,7 +1,7 @@
 import osmnx as ox
 from h3 import h3
 import geopandas as gdf
-from shapely.geometry import Polygon, MultiPolygon
+from shapely.geometry import Polygon, MultiPolygon, shape
 
 
 def swap_lat_lon(coords):
