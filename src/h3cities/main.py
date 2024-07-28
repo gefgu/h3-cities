@@ -38,3 +38,18 @@ def get_city_hexagons_geo_df(city_name: str, resolution: int):
     except:
         geo_df = gdf.GeoDataFrame()
     return geo_df
+
+
+def get_hexagons_from_geojson(geometry, resolution: int):
+    geometry = shape(geometry)
+    if isinstance(geometry, Polygon):
+        hexagons = h3.polyfill_geojson(geometry.__geo_interface__, resolution)
+    elif isinstance(geometry, MultiPolygon):
+        hexagons = []
+        for poly in geometry.geoms:
+            hexagons.extend(h3.polyfill_geojson(poly.__geo_interface__, resolution))
+    boundaries = [
+        {"h": h, "geometry": Polygon(swap_lat_lon(h3.h3_to_geo_boundary(h)))}
+        for h in hexagons
+    ]
+    return boundaries
