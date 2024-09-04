@@ -4,7 +4,6 @@ import geopandas as gdf
 import streamlit as st
 import osmnx as ox
 from h3 import h3
-import geopandas as gdf
 from shapely.geometry import Polygon, MultiPolygon
 
 
