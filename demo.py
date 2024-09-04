@@ -1,4 +1,4 @@
-import contextily as cx
+# import contextily as cx
 import matplotlib.pyplot as plt
 import geopandas as gdf
 import streamlit as st
@@ -54,7 +54,7 @@ def plot_city_hexagons(city_name: str, city: gdf.GeoDataFrame):
         edgecolor="black",
         linewidth=max(10 / len(city), 0.05),
     )
-    cx.add_basemap(ax, crs=city.crs, source=cx.providers.CartoDB.Positron)
+    # cx.add_basemap(ax, crs=city.crs, source=cx.providers.CartoDB.Positron)
     plt.title(city_name)
     ax.set_axis_off()
     return f
