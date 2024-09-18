@@ -1,4 +1,4 @@
-# import contextily as cx
+import contextily as cx
 import matplotlib.pyplot as plt
 import geopandas as gdf
 import streamlit as st

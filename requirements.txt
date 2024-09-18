@@ -4,3 +4,4 @@ streamlit
 osmnx
 h3
 shapely
+contextily
