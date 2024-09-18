@@ -1,0 +1,6 @@
+matplotlib
+geopandas
+streamlit
+osmnx
+h3
+shapely

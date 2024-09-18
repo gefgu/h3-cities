@@ -45,7 +45,7 @@ def get_city_hexagons_geo_df(city_name: str, resolution: int):
 
 
 def plot_city_hexagons(city_name: str, city: gdf.GeoDataFrame):
-    f, ax = plt.subplots(1, 1, dpi=300)
+    f, ax = plt.subplots(1, 1, dpi=100, figsize=(16, 9))
 
     city.plot(
         ax=ax,
@@ -54,14 +54,14 @@ def plot_city_hexagons(city_name: str, city: gdf.GeoDataFrame):
         edgecolor="black",
         linewidth=max(10 / len(city), 0.05),
     )
-    # cx.add_basemap(ax, crs=city.crs, source=cx.providers.CartoDB.Positron)
+    cx.add_basemap(ax, crs=city.crs, source=cx.providers.CartoDB.Voyager)
     plt.title(city_name)
     ax.set_axis_off()
     return f
 
 
 st.set_page_config(page_title="H3-Cities")
-st.title("H3-Cities First Demo!")
+st.title("H3-Cities")
 
 city_name = st.text_input("City Name:", "Paris, France")
 resolution = st.slider("Resolution:", 5, 12, 8)
