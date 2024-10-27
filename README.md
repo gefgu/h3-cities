@@ -12,3 +12,6 @@ Run the demo using:
 ```bash
 streamlit run demo.py
 ```
+
+## TODOs
+- [ ] Add Code for alternative usage
