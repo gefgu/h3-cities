@@ -5,6 +5,7 @@ import streamlit as st
 import osmnx as ox
 from h3 import h3
 from shapely.geometry import Polygon, MultiPolygon
+import gradio as gr
 
 
 def clean_string(s: str):
@@ -60,21 +61,28 @@ def plot_city_hexagons(city_name: str, city: gdf.GeoDataFrame):
     return f
 
 
-st.set_page_config(page_title="H3-Cities")
-st.title("H3-Cities")
+def process_city(city_name, resolution):
+    city = get_city_hexagons_geo_df(city_name, resolution)
+    fig = plot_city_hexagons(city_name, city)
 
-city_name = st.text_input("City Name:", "Paris, France")
-resolution = st.slider("Resolution:", 5, 12, 8)
+    save_path = f"{clean_string(city_name)}_resolution_{resolution}.geojson"
+    city.to_file(save_path, driver="GeoJSON")
 
-city = get_city_hexagons_geo_df(city_name, resolution)
-fig = plot_city_hexagons(city_name, city)
+    return fig, save_path
 
-save_path = f"{clean_string(city_name)}_resolution_{resolution}.geojson"
 
-city.to_file(save_path, driver="GeoJSON")
-if fig:
-    st.pyplot(fig)
-else:
-    st.write("Sorry... We couldn't find the data you wanted :(")
-with open(save_path, "rb") as f:
-    st.download_button("Export GeoJSON (.geojson)", f, file_name=save_path)
+iface = gr.Interface(
+    fn=process_city,
+    inputs=[
+        gr.Textbox(label="City Name", value="Paris, France"),
+        gr.Slider(label="Resolution", minimum=5, maximum=12, step=1, value=8),
+    ],
+    outputs=[
+        gr.Plot(label="City Hexagons"),
+        gr.File(label="Export GeoJSON (.geojson)"),
+    ],
+    title="H3-Cities",
+    description="Explore city hexagons based on H3 resolution.",
+)
+
+iface.launch()
