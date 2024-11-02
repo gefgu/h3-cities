@@ -1,0 +1,7 @@
+h3==3.7.3
+contextily
+matplotlib
+geopandas
+osmnx
+shapely
+streamlit
