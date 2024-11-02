@@ -64,7 +64,8 @@ import streamlit as st
 st.set_page_config(page_title="H3-Cities")
 st.title("H3-Cities")
 
-st.text("Moved to: https://huggingface.co/spaces/gefgu/h3-cities")
+st.text("Has been moved to hugging spaces")
+st.link_button("https://huggingface.co/spaces/gefgu/h3-cities")
 
 # city_name = st.text_input("City Name:", "Paris, France")
 # resolution = st.slider("Resolution:", 5, 12, 8)
