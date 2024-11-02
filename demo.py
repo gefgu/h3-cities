@@ -81,7 +81,7 @@ except:
         You can try: 
         - Change the parameters.
         - Refresh the page.
-        - Go to an alternative hosting partner.
+        - Go to an alternative hosting partner. (Click on the button below)
         """,
     )
     st.link_button(
