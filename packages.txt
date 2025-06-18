@@ -1,3 +1,5 @@
+build-essential
+cmake
 libspatialindex-dev
 libgdal-dev
 gdal-bin

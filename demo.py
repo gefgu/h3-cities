@@ -12,7 +12,14 @@ def get_city_data(city_name: str, resolution: int):
     try:
         import geopandas as gdf
         import osmnx as ox
-        from h3 import h3
+
+        # Try to import h3 with fallback
+        try:
+            import h3
+        except ImportError:
+            st.error("H3 library not available. Please use the Hugging Face version.")
+            return None
+
         from shapely.geometry import Polygon, MultiPolygon
 
         def swap_lat_lon(coords):
@@ -47,6 +54,16 @@ def get_city_data(city_name: str, resolution: int):
         hexagons = get_city_hexagons(city_name, resolution)
         geo_df = gdf.GeoDataFrame(hexagons, crs="EPSG:4326")
         return geo_df
+    except ImportError as e:
+        st.error(f"Missing required dependencies: {str(e)}")
+        st.markdown(
+            """
+            ### H3 Library Installation Issue
+            The H3 library requires compilation and may not work on all deployment platforms.
+            Please use the Hugging Face Spaces version which has this dependency pre-installed.
+            """
+        )
+        return None
     except Exception as e:
         st.error(f"Error getting city data: {str(e)}")
         return None

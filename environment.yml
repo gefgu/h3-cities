@@ -1,0 +1,15 @@
+name: h3-cities
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - streamlit
+  - h3-py
+  - geopandas
+  - osmnx
+  - contextily
+  - matplotlib
+  - shapely
+  - pyproj
+  - folium
